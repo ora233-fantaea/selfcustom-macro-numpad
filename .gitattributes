@@ -1,0 +1,16 @@
+# 生成物与生产资料按字节存档：不做换行转换
+* text=auto eol=lf
+
+kicad/gerber/**        -text
+kicad/*.dsn            -text
+kicad/*.ses            -text
+kicad/*.net            -text
+kicad/*.kicad_pcb      -text
+kicad/*.kicad_sch      -text
+kicad/*.kicad_pro      -text
+kicad/*.kicad_dru      -text
+kicad/*.kicad_sym      -text
+lib/numpad.pretty/*    -text
+*.png                  binary
+*.zip                  binary
+*.svg                  text eol=lf

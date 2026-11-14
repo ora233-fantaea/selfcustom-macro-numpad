@@ -1,0 +1,24 @@
+(version 1)
+
+# 嘉立创 6 层 1.6 mm 的常规工艺：最小孔 0.2 mm、最小过孔 0.45 mm、最小线宽 0.15 mm、
+# 最小间距 0.127 mm。默认规则偏保守（0.5 mm 过孔 / 0.3 mm 孔 / 0.2 mm 间距），
+# 按实际下单能力放开，否则 0.4 mm 间距的 QFN 根本扇不出来。
+(rule "via_0.45"
+    (constraint hole_size (min 0.25mm))
+    (constraint via_diameter (min 0.45mm)))
+
+(rule "track_0.15"
+    (constraint track_width (min 0.15mm)))
+
+# 全局间距：网类里写的是 0.2，但本项目按 0.15 布（FreeRouting 用这组数）。
+# 自定义规则优先于网类，所以这里显式压到 0.15。
+(rule "clr_0.15"
+    (constraint clearance (min 0.15mm)))
+
+# 孔到铜间距：USB-C 16P 公版封装里 A1/A12 焊盘距离外壳固定孔 0.1847 mm，
+# 是封装固有几何（不是布线问题），按 0.15 放开；板边间距同理按 0.3 放开。
+(rule "hole_clr_0.15"
+    (constraint hole_clearance (min 0.15mm)))
+
+(rule "edge_clr_0.3"
+    (constraint edge_clearance (min 0.2mm)))

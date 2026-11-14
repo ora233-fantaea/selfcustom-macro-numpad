@@ -1,0 +1,122 @@
+(footprint "SW_Stab_Cherry_MX_2.00u"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Cherry MX PCB-mount stabilizer, 2.00u (23.876 mm wire). Origin = switch center. 4 non-plated holes: 2 x 3.048 (clip) + 2 x 3.9878 (post).")
+	(tags "keyboard stabilizer cherry mx 2u")
+	(property "Reference" "REF**"
+		(at 0 -10 0)
+		(layer "F.SilkS")
+		(uuid "bb000001-0000-4000-8000-000000000001")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SW_Stab_Cherry_MX_2.00u"
+		(at 0 12 0)
+		(layer "F.Fab")
+		(uuid "bb000002-0000-4000-8000-000000000002")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bb000003-0000-4000-8000-000000000003")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bb000004-0000-4000-8000-000000000004")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -14.4 -8.6)
+		(end -9.4 -8.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "bb000010-0000-4000-8000-000000000010")
+	)
+	(fp_line
+		(start -14.4 9.8)
+		(end -9.4 9.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "bb000011-0000-4000-8000-000000000011")
+	)
+	(fp_line
+		(start 14.4 -8.6)
+		(end 9.4 -8.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "bb000012-0000-4000-8000-000000000012")
+	)
+	(fp_line
+		(start 14.4 9.8)
+		(end 9.4 9.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "bb000013-0000-4000-8000-000000000013")
+	)
+	(pad "" np_thru_hole circle
+		(at -11.938 -6.985)
+		(size 3.048 3.048)
+		(drill 3.048)
+		(layers "*.Cu" "*.Mask")
+		(uuid "bb000020-0000-4000-8000-000000000020")
+	)
+	(pad "" np_thru_hole circle
+		(at 11.938 -6.985)
+		(size 3.048 3.048)
+		(drill 3.048)
+		(layers "*.Cu" "*.Mask")
+		(uuid "bb000021-0000-4000-8000-000000000021")
+	)
+	(pad "" np_thru_hole circle
+		(at -11.938 8.225)
+		(size 3.9878 3.9878)
+		(drill 3.9878)
+		(layers "*.Cu" "*.Mask")
+		(uuid "bb000022-0000-4000-8000-000000000022")
+	)
+	(pad "" np_thru_hole circle
+		(at 11.938 8.225)
+		(size 3.9878 3.9878)
+		(drill 3.9878)
+		(layers "*.Cu" "*.Mask")
+		(uuid "bb000023-0000-4000-8000-000000000023")
+	)
+	(embedded_fonts no)
+)

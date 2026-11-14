@@ -1,0 +1,17 @@
+﻿import sys, os
+sys.path.insert(0, r'numpad/gen')
+os.chdir(r'numpad/gen')
+import route as R, pcbnew
+R.board.SetCopperLayerCount(4)
+print('layers ok'); sys.stdout.flush()
+R.route_matrix(); print('m1'); sys.stdout.flush()
+R.route_rows_to_mcu(); print('m2'); sys.stdout.flush()
+R.route_cols_to_mcu(); print('m3'); sys.stdout.flush()
+R.route_encoder(); R.route_qspi(); R.route_usb(); R.route_power()
+R.route_decoupling(); R.route_clock(); R.route_ctrl(); R.route_boot_pull()
+print('routes ok'); sys.stdout.flush()
+R.board.Save(R.PCB.replace('.kicad_pcb','_noroute.nokicad'))
+print('save-notfilled ok'); sys.stdout.flush()
+R.add_zones(); print('zones ok'); sys.stdout.flush()
+R.board.Save(R.PCB)
+print('final save ok'); sys.stdout.flush()

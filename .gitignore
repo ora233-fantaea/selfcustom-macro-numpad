@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+
+# KiCad 本地状态 / 锁 / 缓存（不进归档）
+*.kicad_prl
+*.lck
+fp-info-cache
+*-backups/
+*.kicad_save
+
+# 探索期与备份产物（保留在本地，不入库）
+kicad/_*
+kicad/test_*
+kicad/numpad_mt8_9err.kicad_pcb
+kicad/numpad_noroute.*
+kicad/numpad_sch.pdf
+kicad/*.kicad-save-*
