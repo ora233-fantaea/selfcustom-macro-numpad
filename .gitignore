@@ -16,3 +16,8 @@ kicad/numpad_mt8_9err.kicad_pcb
 kicad/numpad_noroute.*
 kicad/numpad_sch.pdf
 kicad/*.kicad-save-*
+
+# Blender 无头渲染临时产物
+img/_*
+img/dsh_headless_*.log
+img/heartbeat.jsonl

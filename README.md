@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| **当前状态** | ✅ 原理图完成（ERC 0 违规，网表与设计逐网络一致）<br>✅ PCB 完成（DRC **0 违规 / 0 未连接**，Gerber 已导出）<br>⬜ 外壳 / 定位板 / 底壳（3D 模型未做）<br>⬜ 固件（QMK/Vial 键位未写）<br>⬜ 打样、装配、实测<br>💤 **项目暂停**（成本不划算，见 [成本核算](docs/成本核算.md)）<br>🧭 v2 概念：ESP32 圆屏旋钮模块 + 35 键（[已出布局图](docs/布局方案-v2.md)，未实施）<br>🧭 v3 概念：十字沟槽 + **M5Dial φ51**（**只走有线，不开 WiFi/蓝牙**）+ 单线出线（板载 Hub），四块岛重排（[布局图](docs/布局方案-v3.md) / [接线图](img/wiring_v3.png)，未实施）<br>🆕 **v4 极简**（推荐）：布局沿用 v3，但 **M5Dial 不再是 USB 设备**，只接 UART + 5V，**Hub 整个砍掉**（[方案](docs/布局方案-v4.md) / [接线图](img/wiring_v4.png)，未实施）<br>🎯 **产品定义**：旋钮调音量 + 圆屏常驻显示 **游戏帧数 / 当前曲目 / 时间**（[功能与屏幕方案](docs/功能与屏幕方案.md) / [界面示意](img/dial_screen_mock.png)） |
+| **当前状态** | ✅ 原理图完成（ERC 0 违规，网表与设计逐网络一致）<br>✅ PCB 完成（DRC **0 违规 / 0 未连接**，Gerber 已导出）<br>⬜ 外壳 / 定位板 / 底壳（3D 模型未做）<br>⬜ 固件（QMK/Vial 键位未写）<br>⬜ 打样、装配、实测<br>💤 **项目暂停**（成本不划算，见 [成本核算](docs/成本核算.md)）<br>🧭 v2 概念：ESP32 圆屏旋钮模块 + 35 键（[已出布局图](docs/布局方案-v2.md)，未实施）<br>🧭 v3 概念：十字沟槽 + **M5Dial φ51**（**只走有线，不开 WiFi/蓝牙**）+ 单线出线（板载 Hub），四块岛重排（[布局图](docs/布局方案-v3.md) / [接线图](img/wiring_v3.png)，未实施）<br>🆕 **v4 极简**（推荐）：布局沿用 v3，但 **M5Dial 不再是 USB 设备**，只接 UART + 5V，**Hub 整个砍掉**（[方案](docs/布局方案-v4.md) / [接线图](img/wiring_v4.png)，未实施）<br>🎯 **产品定义**：旋钮调音量 + 圆屏常驻显示 **游戏帧数 / 当前曲目 / 时间**（[功能与屏幕方案](docs/功能与屏幕方案.md) / [界面示意](img/dial_screen_mock.png)）<br>🎨 **整机效果图**：v4 布局的 Blender 概念渲染（[成品图](img/product_hero.png)） |
 | **板子规格** | 107.25 × 138.30 mm，R3 圆角，**2 层**，1.6 mm 厚，USB-C 居中后缘 |
 | **主控** | RP2040（QFN-56）+ W25Q32 QSPI Flash + 12 MHz 晶振 + ME6211 3V3 LDO + USBLC6-2SC6 ESD |
 | **规模** | 85 个元件、61 个网络、91 个封装（含 6 个 φ3.4 安装孔）、613 段走线、37 个过孔 |
@@ -17,6 +17,7 @@
 ## 目录
 
 - [它长什么样](#它长什么样)
+- [成品效果图（v4 概念渲染）](#成品效果图v4-概念渲染)
 - [键盘布局](#键盘布局)
 - [电气设计](#电气设计)
 - [PCB](#pcb)
@@ -40,6 +41,20 @@
 [`kicad/img/sch_overview.png`](kicad/img/sch_overview.png)
 
 正面图里那片绿色是双面 GND 覆铜（孤岛已移除），背面能看到全部焊盘与矩阵走线。
+
+## 成品效果图（v4 概念渲染）
+
+![hero](img/product_hero.png)
+
+这是 **v4 布局**（35 键 + 四块岛 + M5Dial φ51，见 [docs/布局方案-v4.md](docs/布局方案-v4.md)）的整机效果图，**不是已完成的实物照片，也不是 PCB 那版 26 键配列**——上表的 PCB 仍是 26 键 5×6 + EC11。这张图是用来"看形"的：验证 6° 倾角、四块岛的十字沟槽、键帽与拨盘的比例、深色壳 + 米白帽 + 橙色宏键的配色是否成立。
+
+图由 `gen/render_product.py` 用 Blender 5.2.4 无头渲染（1920×1440 / 160 spp，约 11 s）：几何直接复用 `draw_layout_v3.py` 的 mm 坐标，屏幕贴图由 `gen/make_dial_face.py` 生成 240×240，滚花旋钮 44 条齿、面板开孔 Ø45.2、屏凹 1.6 mm。重新出图：
+
+```bash
+PREVIEW=1 blender -b -P gen/render_product.py          # 720×720 / 24 spp，2 s 看形
+blender -b -P gen/render_product.py -- --res 1920x1440 --samples 160 --out img/product_hero.png
+DIAL_TOP=1 PREVIEW=1 blender -b -P gen/render_product.py   # 正上方俯视拨盘，核对屏幕方向
+```
 
 ## 键盘布局
 
@@ -162,6 +177,8 @@ z 轴垂直于键面，PCB 上表面 = 0。**只有 PCB 完成了，这一节是
 │   ├── draw_wiring_v4.py  # v4 极简接线框图（出 img/wiring_v4.png）
 │   ├── draw_screen_mock.py # 拨盘 240×240 界面示意（出 img/dial_screen_mock.png）
 │   ├── draw_esp32_role.py  # ESP32-S3 在整机里的分工图（出 img/esp32_role.png）
+│   ├── make_dial_face.py   # 拨盘屏幕贴图 240×240（出 img/dial_face_240.png）
+│   ├── render_product.py   # Blender 无头渲染整机效果图（出 img/product_hero.png）
 │   └── probes/            # 【归档】探索期探针脚本（KiCad API 语义验证）
 ├── lib/numpad.pretty/     # 自制封装：热插拔座、2u 稳定器、φ3.4 安装孔
 └── kicad/
@@ -207,6 +224,8 @@ kicad-cli pcb export drill  -o kicad/gerber kicad/numpad.kicad_pcb
 $PY gen/render.py
 # 9) 文档表格（改过 design.py 后重跑）
 $PY gen/make_docs.py
+# 10) 整机效果图（可选，需要 Blender 5.2；纯看图用 PREVIEW=1）
+blender -b -P gen/render_product.py -- --res 1920x1440 --samples 160 --out img/product_hero.png
 ```
 
 两个必须记住的顺序约束：
